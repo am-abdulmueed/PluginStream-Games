@@ -14,19 +14,20 @@ foreach ($segment in $rawContent.segments) {
     if ($segment.hits) {
         $optimizedSegmentHits = $segment.hits | ForEach-Object {
             
-            # Yahan hum check kar rahe hain ke images array mein kam az kam 2 links hon
+            # Icon hamesha images array ka pehla (aur aksar sirf) link hota hai
             $iconLink = if ($_.images.Count -ge 1) { $_.images[0] } else { $null }
-            $posterLink = if ($_.images.Count -ge 2) { $_.images[1] } else { $null }
 
             [PSCustomObject]@{
-                title   = $_.title
-                gameURL = $_.gameURL
-                genres  = $_.genres
-                # Images ko clean object format mein convert kar rahe hain
-                images  = @{
-                 poster  = $iconLink
-                    icon = $posterLink
-                }
+                id              = $_.id
+                slug            = $_.slug
+                title           = $_.title
+                description     = $_.description
+                howToPlayText   = $_.howToPlayText
+                gameURL         = $_.gameURL
+                playgamaGameUrl = $_.playgamaGameUrl
+                # Sirf icon link ko array format mein rakha ja raha hai
+                images          = @($iconLink)
+                inGamePurchases = $_.inGamePurchases
             }
         }
         $allOptimizedHits += $optimizedSegmentHits

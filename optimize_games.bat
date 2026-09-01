@@ -5,6 +5,6 @@ TITLE Game JSON Optimizer
 cd /d "%~dp0"
 
 :: Sahi file name yahan likhein
-powershell.exe -ExecutionPolicy Bypass -File "UpdateGameList.ps1"
+powershell.exe -ExecutionPolicy Bypass -File "UpdateGameList - Copy.ps1"
 
 pause
